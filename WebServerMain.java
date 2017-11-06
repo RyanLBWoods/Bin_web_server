@@ -9,33 +9,33 @@ import java.net.Socket;
  *
  */
 public class WebServerMain {
-	/**
-	 * Main method for running the server.
-	 * 
-	 * @param args
-	 *            Command line arguments
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		// Print usage message if inadequate arguments
-		if (args.length < 2) {
-			System.out.println("Usage: java WebServerMain <document_root> <port>");
-			System.exit(0);
-		}
-		// Get port number and path
-		int port = Integer.valueOf(args[1]);
-		String path = args[0];
-		// Run the server
-		try {
-			ServerSocket ss = new ServerSocket(port);
-			Socket socket = ss.accept();
-			Server.requestHandler(path, socket);
-			socket.close();
-			ss.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    /**
+     * Main method for running the server.
+     * 
+     * @param args
+     *            Command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        // Print usage message if inadequate arguments
+        if (args.length < 2) {
+            System.out.println("Usage: java WebServerMain <document_root> <port>");
+            System.exit(0);
+        }
+        // Get port number and path
+        int port = Integer.valueOf(args[1]);
+        String path = args[0];
+        // Run the server
+        try {
+            ServerSocket ss = new ServerSocket(port);
+            Socket socket = ss.accept();
+            Server.requestHandler(path, socket);
+            socket.close();
+            ss.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
 }

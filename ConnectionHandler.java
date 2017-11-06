@@ -13,25 +13,25 @@ import java.net.Socket;
  */
 public class ConnectionHandler {
 
-	private Socket conn;
-	private InputStream ins;
-	private OutputStream os;
-	private BufferedReader br;
+    private Socket conn;
+    private InputStream ins;
+    private OutputStream os;
+    private BufferedReader br;
 
-	/**
-	 * Method that handle the request.
-	 * 
-	 * @param conn
-	 *            Client socket
-	 */
-	public ConnectionHandler(Socket conn) {
-		this.conn = conn;
-		try {
-			ins = conn.getInputStream();
-			os = conn.getOutputStream();
-			br = new BufferedReader(new InputStreamReader(ins));
-		} catch (IOException e) {
-			System.out.println("ConnectionHandler: " + e.getMessage());
-		}
-	}
+    /**
+     * Method that handle the request.
+     * 
+     * @param conn
+     *            Client socket
+     */
+    public ConnectionHandler(Socket conn) {
+        this.conn = conn;
+        try {
+            ins = conn.getInputStream();
+            os = conn.getOutputStream();
+            br = new BufferedReader(new InputStreamReader(ins));
+        } catch (IOException e) {
+            System.out.println("ConnectionHandler: " + e.getMessage());
+        }
+    }
 }
