@@ -2,18 +2,30 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * CS5001-P3: Networking.
+ * 
+ * @author bl41
+ *
+ */
 public class WebServerMain {
-
+	/**
+	 * Main method for running the server.
+	 * 
+	 * @param args
+	 *            Command line arguments
+	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		if(args.length < 2){
+		// Print usage message if inadequate arguments
+		if (args.length < 2) {
 			System.out.println("Usage: java WebServerMain <document_root> <port>");
-			System.exit(1);
+			System.exit(0);
 		}
+		// Get port number and path
 		int port = Integer.valueOf(args[1]);
 		String path = args[0];
-		
-//			Server server = new Server();
+		// Run the server
 		try {
 			ServerSocket ss = new ServerSocket(port);
 			Socket socket = ss.accept();
@@ -25,7 +37,5 @@ public class WebServerMain {
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 }

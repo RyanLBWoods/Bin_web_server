@@ -1,13 +1,22 @@
-
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+/**
+ * Class for client side.
+ * 
+ * @author bl41
+ *
+ */
 public class Client {
-
+	/**
+	 * Main method that runs the client.
+	 * 
+	 * @param args
+	 *            Command line arguments
+	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
@@ -21,7 +30,7 @@ public class Client {
 			out.flush();
 			String recv = "";
 			Scanner sc = new Scanner(socket.getInputStream());
-			while(sc.hasNext()){
+			while (sc.hasNext()) {
 				recv = recv + sc.nextLine() + "\n";
 			}
 			System.out.println(recv);
@@ -35,7 +44,7 @@ public class Client {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
