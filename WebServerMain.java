@@ -3,7 +3,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * CS5001-P3: Networking.
+ * CS5001-P3: A Java web server which can response to some HTTP/1.1 request.
  * 
  * @author bl41
  *
@@ -29,7 +29,7 @@ public class WebServerMain {
         try {
             ServerSocket ss = new ServerSocket(port);
             Socket socket = ss.accept();
-            Server.requestHandler(path, socket);
+            RequestHandler.requestHandler(path, socket);
             socket.close();
             ss.close();
         } catch (IOException e) {

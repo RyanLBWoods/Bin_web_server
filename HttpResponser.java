@@ -17,13 +17,13 @@ public class HttpResponser {
      * Method to response to different HTTP requests.
      * 
      * @param flag
-     *            Integer that identify existence for file
+     *            Integer that identify existence of file
      * @param content
      *            Content of file
      * @param type
-     *            Type of content
+     *            Type of file
      * @param length
-     *            Content Length in bytes
+     *            Content length in bytes
      */
     public HttpResponser(int flag, String content, String type, long length) {
         // Construct responser
@@ -31,7 +31,22 @@ public class HttpResponser {
         this.content = content;
         this.type = type;
         this.length = String.valueOf(length);
-        // Switch method to make different answer accordingly
+        setHeader(flag, type, length);
+        setType(this.type);
+    }
+
+    /**
+     * Method to set header context.
+     * 
+     * @param flag
+     *            Integer that identify existence of file
+     * @param type
+     *            Type of file
+     * @param length
+     *            Content length in bytes
+     */
+    public void setHeader(int flag, String type, long length) {
+        // Switch method to make different response accordingly
         switch (flag) {
         case Configurations.EXIST:
             this.status = "HTTP/1.1 200 OK\r\n";
@@ -46,14 +61,47 @@ public class HttpResponser {
             System.out.println("Default output");
             break;
         }
+    }
+
+    /**
+     * Method to set type context.
+     * 
+     * @param type
+     *            Type of file
+     */
+    public void setType(String type) {
         // Set type
-        if (this.type.equals("txt") || this.type.equals("html")) {
+        switch (type) {
+        case "txt":
             this.type = "text/html\r\n";
+            break;
+        case "html":
+            this.type = "text/html\r\n";
+            break;
+        case "jpg":
+            this.type = "jpg\r\n";
+            break;
+        case "jpeg":
+            this.type = "jpeg\r\n";
+            break;
+        case "gif":
+            this.type = "gif\r\n";
+            break;
+        case "png":
+            this.type = "png\r\n";
+            break;
+        default:
+            this.type = "unknown type\r\n";
+            break;
         }
     }
 
     /**
      * Method override toString() method to construct response message.
+     * 
+     * Structure: <protocol><responseCode><cr><lf>
+     * <responseText>(<metaData><contentType><contentLength> each tailing with
+     * <cr><lf>) <cr><lf>(Importent!) <content>
      * 
      * @return Return constructed message
      */
