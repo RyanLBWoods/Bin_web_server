@@ -67,16 +67,12 @@ public class RequestHandler {
         String response = "";
         int flag = 0; // flag to identify existence of file
         String request = requests[0];
-        try {
-            // Get request file
-            File f = new File("www" + requests[1]);
-            String fname = f.getName();
-            String ftype = fname.substring(fname.lastIndexOf(".") + 1);
-            long flength = f.length();
-            response = ResponseHandler.responseHandler(f, flag, ftype, flength, request);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+        // Get request file
+        File f = new File("www" + requests[1]);
+        String fname = f.getName();
+        String ftype = fname.substring(fname.lastIndexOf(".") + 1);
+        long flength = f.length();
+        response = ResponseHandler.responseHandler(f, flag, ftype, flength, request);
         return response;
     }
 }

@@ -28,8 +28,8 @@ public class ResponseHandler {
         // Check if file exist and response
         if (!f.exists()) {
             flag = Configurations.NOT_EXIST; // File not exist
-            HttpResponser httpresp = new HttpResponser(flag, "", ftype, flength);
-            response = httpresp.toString();
+            HttpResponser httpresp = new HttpResponser(flag, null, ftype, flength);
+            response = httpresp.toString(null, f.getName());
         } else {
             flag = Configurations.EXIST; // File exist
             // Switch method to make response accordingly
@@ -39,10 +39,9 @@ public class ResponseHandler {
                     // Read file by bytes
                     FileInputStream fis = new FileInputStream(f);
                     byte[] bytes = new byte[fis.available()];
-                    int len = fis.read(bytes);
-                    String contentBuffer = new String(bytes, 0, len);
-                    HttpResponser getResp = new HttpResponser(flag, contentBuffer, ftype, flength);
-                    response = getResp.toString();
+                    fis.read(bytes);
+                    HttpResponser getResp = new HttpResponser(flag, bytes, ftype, flength);
+                    response = getResp.toString(bytes, f.getName());
                     System.out.println(response);
                     fis.close();
                 } catch (Exception e) {
@@ -50,8 +49,8 @@ public class ResponseHandler {
                 }
                 break;
             case "HEAD":
-                HttpResponser headResp = new HttpResponser(flag, "", ftype, flength);
-                response = headResp.toString();
+                HttpResponser headResp = new HttpResponser(flag, null, ftype, flength);
+                response = headResp.toString(null, f.getName());
                 System.out.println(response);
                 break;
             default:
@@ -62,4 +61,5 @@ public class ResponseHandler {
         }
         return response;
     }
+
 }

@@ -17,4 +17,16 @@ public class Configurations {
      * File not exist.
      */
     public static final int NOT_EXIST = -1;
+    /**
+     * TXT format file.
+     */
+    public static final int TXT_FORMAT = 1;
+    /**
+     * Binary format file (JPEG, PNG and GIF).
+     */
+    public static final int BINARY_FORMAT = 0;
+    /**
+     * Unknown format file.
+     */
+    public static final int UNKNOWN = -1;
 }
