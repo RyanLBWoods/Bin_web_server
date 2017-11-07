@@ -27,20 +27,20 @@ public class HttpResponser {
      */
     public HttpResponser(int flag, String content, String type, long length) {
         // Construct responser
-        this.metadata = "My Java Web Server\n";
+        this.metadata = "My Java Web Server\r\n";
         this.content = content;
         this.type = type;
         this.length = String.valueOf(length);
         // Switch method to make different answer accordingly
         switch (flag) {
         case Configurations.EXIST:
-            this.status = "HTTP/1.1 200 OK\n";
-            this.body = "The " + type + " page from the file in this case containing" + this.length + " bytes";
+            this.status = "HTTP/1.1 200 OK\r\n";
+            this.body = "The " + type + " page from the file in this case containing " + this.length + " bytes\r\n";
             break;
         case Configurations.NOT_EXIST:
-            this.status = "HTTP/1.1 404 Not Found\n";
+            this.status = "HTTP/1.1 404 Not Found\r\n";
             this.body = "response message in this case containing " + length + " bytes of error message as an " + type
-                    + "page";
+                    + "page\r\n";
             break;
         default:
             System.out.println("Default output");
@@ -48,7 +48,7 @@ public class HttpResponser {
         }
         // Set type
         if (this.type.equals("txt") || this.type.equals("html")) {
-            this.type = "text/html\n";
+            this.type = "text/html\r\n";
         }
     }
 
@@ -60,12 +60,12 @@ public class HttpResponser {
     public String toString() {
         String str = "";
         String header;
-        header = status + metadata + "Content-Type: " + type + "Content-Length: " + length + "\n";
+        header = status + metadata + "Content-Type: " + type + "Content-Length: " + length + "\r\n";
 
         if (this.content.isEmpty() || this.content.equals("")) {
             str = header + this.body + "\r\n";
         } else {
-            str = header + this.body + "\n" + content + "\r\n";
+            str = header + this.body + "\r\n" + content + "\r\n";
         }
         return str;
     }
