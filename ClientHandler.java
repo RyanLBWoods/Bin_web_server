@@ -8,7 +8,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
- * Handler to handle client thread.
+ * Handler to handle client thread (support multiple concurrent client
+ * connection request).
  * 
  * @author bl41
  *
@@ -48,11 +49,9 @@ public class ClientHandler extends Thread {
     public void run() {
         System.out.println("new ConnctionHandler thread started .... ");
         try {
-            // RequestHandler.requestHandler(path, socket);
             requestHanlder();
             os.write(Configurations.ACK);
-            // cleanup();
-        } catch (Exception e) {
+        } catch (Exception e) { // Exit cleanly for any Exception
             System.out.println("ConnectionHandler: run " + e.getMessage());
             cleanup();
         }
@@ -83,7 +82,7 @@ public class ClientHandler extends Thread {
                 String[] requests = recv.split(" ");
                 // Get response message
                 String resp = getResponse(path, requests);
-                System.out.println(resp);
+//                System.out.println(resp);
                 out.println(resp);
                 out.flush();
                 out.close();
@@ -117,7 +116,7 @@ public class ClientHandler extends Thread {
     }
 
     /**
-     * Method to close resources.
+     * Method to clean and close resources.
      */
     public void cleanup() {
         System.out.println("ClientHandler: ... cleaning up and exiting ...");

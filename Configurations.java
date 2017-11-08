@@ -1,5 +1,5 @@
 /**
- * Class for certain configurations.
+ * Class for defining configurations.
  * 
  * @author bl41
  *

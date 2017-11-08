@@ -32,9 +32,7 @@ public class HttpResponser {
     public HttpResponser(int flag, byte[] bytes, String type, long length) {
         // Construct responser
         this.metadata = "My Java Web Server\r\n";
-        // this.binaryContent = content;
         setType(type);
-        // this.type = type;
         this.length = String.valueOf(length);
         setHeader(flag, type, length);
         setContent(type, bytes);
@@ -90,7 +88,6 @@ public class HttpResponser {
      *            Content length in bytes
      */
     public void setHeader(int flag, String type, long length) {
-        // Switch method to make different response accordingly
         switch (flag) {
         case Configurations.EXIST:
             this.status = Configurations.CODE_OK;
@@ -116,7 +113,6 @@ public class HttpResponser {
      *            File content indicated in bytes
      */
     public void setContent(String type, byte[] bytes) {
-        // Set type
         if (bytes != null) {
             switch (type) {
             case "txt":
@@ -158,8 +154,9 @@ public class HttpResponser {
      * Method override toString() method to construct response message.
      * 
      * <protocol><responseCode><cr><lf>
-     * <responseText>(<metaData><contentType><contentLength> each tailing with
-     * <cr><lf>) <cr><lf>(Importent!) <content>
+     * <metaData><contentType><contentLength> each tailing with<cr><lf>)
+     * <cr><lf>(Importent!)
+     * <content>
      * 
      * @param bytes
      *            File content indicated in bytes
@@ -170,11 +167,14 @@ public class HttpResponser {
     public String toString(byte[] bytes, String filename) {
         String str = "";
         String header;
+        // Set header message
         header = status + metadata + "Content-Type: " + this.type + "Content-Length: " + this.length + "\r\n";
+        // If content is not null
         if (bytes != null) {
             switch (format) {
             case Configurations.BINARY_FORMAT:
                 str = header + this.body + "\r\n" + binaryContent + "\r\n";
+                // Create new file if request is about getting binary file
                 ImageWriter.writeImage(filename, bytes);
                 break;
             case Configurations.TXT_FORMAT:

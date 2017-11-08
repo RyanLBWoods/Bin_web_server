@@ -36,12 +36,13 @@ public class ResponseHandler {
             switch (request) {
             case "GET":
                 try {
-                    // Read file by bytes
+                    // Read file stream by bytes
                     FileInputStream fis = new FileInputStream(f);
                     byte[] bytes = new byte[fis.available()];
                     fis.read(bytes);
                     HttpResponser getResp = new HttpResponser(flag, bytes, ftype, flength);
                     response = getResp.toString(bytes, f.getName());
+                    // Print response in terminal
                     System.out.println(response);
                     fis.close();
                 } catch (Exception e) {
@@ -51,10 +52,12 @@ public class ResponseHandler {
             case "HEAD":
                 HttpResponser headResp = new HttpResponser(flag, null, ftype, flength);
                 response = headResp.toString(null, f.getName());
+                // Print response in terminal
                 System.out.println(response);
                 break;
             default:
                 response = Configurations.CODE_NOT_IMPLEMENTED;
+                // Print response in terminal
                 System.out.println(response);
                 break;
             }

@@ -20,8 +20,10 @@ public class Client {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         try {
+            // Create client socket
             Socket socket = new Socket("localhost", Configurations.PORT);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            // Test request
             String requestStr = "GET index.html HTTP/1.1";
             out.println(requestStr);
             String host = "Host: localhost: 8080";
