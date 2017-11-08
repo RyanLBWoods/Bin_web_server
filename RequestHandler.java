@@ -68,7 +68,7 @@ public class RequestHandler {
         int flag = 0; // flag to identify existence of file
         String request = requests[0];
         // Get request file
-        File f = new File("www" + requests[1]);
+        File f = new File(path + requests[1]);
         String fname = f.getName();
         String ftype = fname.substring(fname.lastIndexOf(".") + 1);
         long flength = f.length();

@@ -9,12 +9,14 @@ import java.net.Socket;
  *
  */
 public class WebServerMain {
+//    private static ServerSocket ss;
     /**
      * Main method for running the server.
      * 
      * @param args
      *            Command line arguments
      */
+    @SuppressWarnings("resource")
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         // Print usage message if inadequate arguments
@@ -28,10 +30,18 @@ public class WebServerMain {
         // Run the server
         try {
             ServerSocket ss = new ServerSocket(port);
-            Socket socket = ss.accept();
-            RequestHandler.requestHandler(path, socket);
-            socket.close();
-            ss.close();
+            while (true) {
+                Socket socket = ss.accept();
+                ClientHandler ch = new ClientHandler(path, socket);
+                ch.start();
+            }
+            /*
+             * Comment the while loop above and uncomment code below to make program support only one client
+             */
+//          RequestHandler.requestHandler(path, socket);
+//          ss.close();
+//          socket.close();
+//          ss.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

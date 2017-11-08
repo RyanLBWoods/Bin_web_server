@@ -93,11 +93,11 @@ public class HttpResponser {
         // Switch method to make different response accordingly
         switch (flag) {
         case Configurations.EXIST:
-            this.status = "HTTP/1.1 200 OK\r\n";
+            this.status = Configurations.CODE_OK;
             this.body = "The " + type + " page from the file in this case containing " + this.length + " bytes\r\n";
             break;
         case Configurations.NOT_EXIST:
-            this.status = "HTTP/1.1 404 Not Found\r\n";
+            this.status = Configurations.CODE_NOT_FOUND;
             this.body = "response message in this case containing " + length + " bytes of error message as an " + type
                     + "page\r\n";
             break;

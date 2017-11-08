@@ -54,7 +54,7 @@ public class ResponseHandler {
                 System.out.println(response);
                 break;
             default:
-                response = "HTTP/1.1 501 Not Implemented";
+                response = Configurations.CODE_NOT_IMPLEMENTED;
                 System.out.println(response);
                 break;
             }
