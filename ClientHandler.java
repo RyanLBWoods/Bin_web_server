@@ -58,36 +58,51 @@ public class ClientHandler extends Thread {
         }
     }
 
+    /**
+     * Method to handle the request.
+     * 
+     * @throws Exception
+     *             Throw exception when client is broken
+     */
     public void requestHanlder() throws Exception {
         while (true) {
-            // try {
-            PrintWriter out = new PrintWriter(os, true);
-            String recv = "";
-            String line = "";
-            // Get request
-            line = br.readLine();
-            if (line == null || line.equals("null")) {
-                throw new Exception("... client has closed the connection ... ");
-            }
-            while (!line.isEmpty()) {
-                recv = recv + line;
+            try {
+                PrintWriter out = new PrintWriter(os, true);
+                String recv = "";
+                String line = "";
+                // Get request
                 line = br.readLine();
+                if (line == null || line.equals("null")) {
+                    throw new Exception("... client has closed the connection ... ");
+                }
+                while (!line.isEmpty()) {
+                    recv = recv + line;
+                    line = br.readLine();
+                }
+                // Construct request
+                String[] requests = recv.split(" ");
+                // Get response message
+                String resp = getResponse(path, requests);
+                System.out.println(resp);
+                out.println(resp);
+                out.flush();
+                out.close();
+            } catch (IOException e) {
+                System.out.println("ConnectionHandler: " + e.getMessage());
             }
-            // Construct request
-            String[] requests = recv.split(" ");
-            // Get response message
-            String resp = getResponse(path, requests);
-            System.out.println(resp);
-            out.println(resp);
-            out.flush();
-            out.close();
-            // } catch (IOException e) {
-            // System.out.println("ConnectionHandler: " + e.getMessage());
-            // }
         }
 
     }
 
+    /**
+     * Method to get response.
+     * 
+     * @param path
+     *            File path
+     * @param requests
+     *            An array of string that contains the constructed request
+     * @return Return the response message
+     */
     public String getResponse(String path, String[] requests) {
         String response = "";
         int flag = 0; // flag to identify existence of file
