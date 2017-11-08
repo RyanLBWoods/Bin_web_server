@@ -1,7 +1,3 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 /**
@@ -26,7 +22,8 @@ public class HttpResponser {
      * 
      * @param flag
      *            Integer that identify existence of file
-     * @param bytes File content indicated in bytes
+     * @param bytes
+     *            File content indicated in bytes
      * @param type
      *            Type of file
      * @param length
@@ -45,7 +42,9 @@ public class HttpResponser {
 
     /**
      * Method to set type message.
-     * @param type File type
+     * 
+     * @param type
+     *            File type
      */
     public void setType(String type) {
         switch (type) {
@@ -113,7 +112,8 @@ public class HttpResponser {
      * 
      * @param type
      *            Type of file
-     * @param bytes File content indicated in bytes
+     * @param bytes
+     *            File content indicated in bytes
      */
     public void setContent(String type, byte[] bytes) {
         // Set type
@@ -161,7 +161,10 @@ public class HttpResponser {
      * <responseText>(<metaData><contentType><contentLength> each tailing with
      * <cr><lf>) <cr><lf>(Importent!) <content>
      * 
-     * @param bytes File content indicated in bytes
+     * @param bytes
+     *            File content indicated in bytes
+     * @param filename
+     *            Name of requested file
      * @return Return constructed message
      */
     public String toString(byte[] bytes, String filename) {
@@ -172,23 +175,7 @@ public class HttpResponser {
             switch (format) {
             case Configurations.BINARY_FORMAT:
                 str = header + this.body + "\r\n" + binaryContent + "\r\n";
-                String name = filename.substring(filename.lastIndexOf("/") + 1);
-                File file = new File(name);
-                try {
-                    if(!file.exists()){
-                        file.createNewFile();
-                    }
-                    FileOutputStream fos = new FileOutputStream(file);
-                    fos.write(bytes);
-                    fos.flush();
-                    fos.close();
-                } catch (FileNotFoundException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                ImageWriter.writeImage(filename, bytes);
                 break;
             case Configurations.TXT_FORMAT:
                 str = header + this.body + "\r\n" + txtContent + "\r\n";
