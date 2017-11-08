@@ -9,7 +9,6 @@ import java.net.Socket;
  *
  */
 public class WebServerMain {
-//    private static ServerSocket ss;
     /**
      * Main method for running the server.
      * 
@@ -29,19 +28,19 @@ public class WebServerMain {
         String path = args[0];
         // Run the server
         try {
+            // Support multiple concurrent client connection request
             ServerSocket ss = new ServerSocket(port);
             while (true) {
                 Socket socket = ss.accept();
                 ClientHandler ch = new ClientHandler(path, socket);
                 ch.start();
             }
-            /*
-             * Comment the while loop above and uncomment code below to make program support only one client
-             */
-//          RequestHandler.requestHandler(path, socket);
-//          ss.close();
+          ///////////////////////////////////////////////////////////////////////////////////////////////////
+          // Comment the while loop above and uncomment code below to make program support only one client //
+          ///////////////////////////////////////////////////////////////////////////////////////////////////
+//          Socket socket = ss.accept();
+//          SingleRequestHandler.requestHandler(path, socket);
 //          socket.close();
-//          ss.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
