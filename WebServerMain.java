@@ -34,24 +34,32 @@ public class WebServerMain {
             ServerSocket ss = new ServerSocket(port);
 //            for (int i = 0; i < Configurations.CLIENT_LIMIT; i++) {
 //                Socket socket = ss.accept();
-//                // Write request time to log file
-//                Date requestTime = new Date();
-//                SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//                String time = format.format(requestTime) + " ";
-//                LoggingFile.witeLog(time);
-//                ClientHandler ch = new ClientHandler(path, socket);
-//                ch.start();
+//                  Date requestTime = new Date();
+//                  long getTime = System.currentTimeMillis();
+//                  SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//                  String time = format.format(requestTime) + " ";
+//                  // Log request accept time into log file
+//                  LoggingFile.witeLog(time);
+//                  SingleRequestHandler.requestHandler(path, socket);
+//                  // Log request response time into log file
+//                  long handleTime = System.currentTimeMillis() - getTime;
+//                  LoggingFile.witeLog(" " + String.valueOf(handleTime) + "ms\r\n");
 //            }
             /////////////////////////////////////////////////////////////////////////////////////////////
-            // Uncomment the loop above and comment code below to make program support multiple client //
+            // Uncomment the loop above and comment loop below to make program support multiple client //
             /////////////////////////////////////////////////////////////////////////////////////////////
             while (true) {
                 Socket socket = ss.accept();
                 Date requestTime = new Date();
+                long getTime = System.currentTimeMillis();
                 SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 String time = format.format(requestTime) + " ";
+                // Log request accept time into log file
                 LoggingFile.witeLog(time);
                 SingleRequestHandler.requestHandler(path, socket);
+                // Log request response time into log file
+                long handleTime = System.currentTimeMillis() - getTime;
+                LoggingFile.witeLog(" " + String.valueOf(handleTime) + "ms\r\n");
             }
             // socket.close();
         } catch (IOException e) {

@@ -36,6 +36,7 @@ public class ResponseHandler {
             flag = Configurations.NOT_EXIST; // File not exist
             HttpResponser httpresp = new HttpResponser(flag, protocol, ftype, flength);
             response = httpresp.toString(null, f.getName());
+            System.out.println(response);
             out.println(response);
         } else {
             flag = Configurations.EXIST; // File exist
@@ -70,13 +71,22 @@ public class ResponseHandler {
             case "DELETE":
                 HttpResponser deleteResp = new HttpResponser(flag, protocol, ftype, flength);
                 response = deleteResp.toString(null, f.getName());
-                f.delete();
+                out.println(response);
+                System.out.println(response);
+                if (f.delete()) {
+                    System.out.println("File deleted");
+                    out.println("File deleted");
+                } else {
+                    out.println("File delete fail");
+                    System.out.println("File delete fail");
+                }
                 break;
             default:
                 // Unsupported request type
                 response = protocol + " " + Configurations.CODE_NOT_IMPLEMENTED;
                 out.println(response);
-                LoggingFile.witeLog(" " + Configurations.CODE_NOT_IMPLEMENTED);
+                // Log into log file
+                LoggingFile.witeLog(" " + Configurations.CODE_NOT_IMPLEMENTED.substring(0, Configurations.CODE_NOT_IMPLEMENTED.lastIndexOf("\r")));
                 // Print response in terminal
                 System.out.println(response);
                 break;

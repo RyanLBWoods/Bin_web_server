@@ -140,7 +140,7 @@ public class HttpResponser {
             str = header + this.body + "\r\n";
         }
         // Write response status to log file
-        LoggingFile.witeLog(" " + this.status);
+        LoggingFile.witeLog(" " + this.status.substring(0, this.status.lastIndexOf("\r")));
         return str;
     }
 }

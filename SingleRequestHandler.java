@@ -39,7 +39,7 @@ public class SingleRequestHandler {
             String line = "";
             // Get request
             line = br.readLine();
-            if (!line.isEmpty()) {
+            if (line != null && !line.isEmpty()) {
                 // Write request to log file
                 LoggingFile.witeLog(line);
                 recv = recv + line;
