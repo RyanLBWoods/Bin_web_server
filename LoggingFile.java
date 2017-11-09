@@ -16,6 +16,10 @@ public class LoggingFile {
     private String date;
     private String content;
 
+    /**
+     * Constructor.
+     * @param content
+     */
     public LoggingFile(String content) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date now = new Date();
@@ -23,6 +27,9 @@ public class LoggingFile {
         this.content = content;
     }
 
+    /**
+     * Method to create a log file.
+     */
     public void createFile() {
         String log = this.date + "\r\n" + this.content;
         File file = new File("log.txt");
