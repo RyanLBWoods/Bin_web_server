@@ -37,7 +37,7 @@ public class LoggingFile {
             if (!file.exists()) {
                 file.createNewFile(); // Create file if it does not exist
             }
-            FileOutputStream fos = new FileOutputStream(file);
+            FileOutputStream fos = new FileOutputStream(file, true);
             fos.write(log.getBytes());
             fos.flush();
             fos.close();

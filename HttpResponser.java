@@ -1,5 +1,3 @@
-import java.io.UnsupportedEncodingException;
-
 /**
  * Class for HTTP responser.
  * 
@@ -10,8 +8,6 @@ public class HttpResponser {
 
     private String status;
     private String metadata;
-    private String txtContent;
-    private byte[] binaryContent;
     private String body;
     private String type;
     private String length;
@@ -29,13 +25,13 @@ public class HttpResponser {
      * @param length
      *            Content length in bytes
      */
-    public HttpResponser(int flag, byte[] bytes, String type, long length) {
+    public HttpResponser(int flag, String type, long length) {
         // Construct responser
         this.metadata = "My Java Web Server\r\n";
         setType(type);
         this.length = String.valueOf(length);
         setHeader(flag, type, length);
-        setContent(type, bytes);
+//        setContent(type, bytes);
     }
 
     /**
@@ -96,7 +92,7 @@ public class HttpResponser {
         case Configurations.NOT_EXIST:
             this.status = Configurations.CODE_NOT_FOUND;
             this.body = "response message in this case containing " + length + " bytes of error message as an " + type
-                    + "page\r\n";
+                    + " page\r\n";
             break;
         default:
             System.out.println("Default output");
@@ -112,43 +108,43 @@ public class HttpResponser {
      * @param bytes
      *            File content indicated in bytes
      */
-    public void setContent(String type, byte[] bytes) {
-        if (bytes != null) {
-            switch (type) {
-            case "txt":
-                try {
-                    this.txtContent = new String(bytes, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                break;
-            case "html":
-                try {
-                    this.txtContent = new String(bytes, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                break;
-            case "jpg":
-                this.binaryContent = bytes;
-                break;
-            case "jpeg":
-                this.binaryContent = bytes;
-                break;
-            case "gif":
-                this.binaryContent = bytes;
-                break;
-            case "png":
-                this.binaryContent = bytes;
-                break;
-            default:
-                break;
-            }
-        }
-
-    }
+//    public void setContent(String type, byte[] bytes) {
+//        if (bytes != null) {
+//            switch (type) {
+//            case "txt":
+//                try {
+//                    this.txtContent = new String(bytes, "UTF-8");
+//                } catch (UnsupportedEncodingException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                }
+//                break;
+//            case "html":
+//                try {
+//                    this.txtContent = new String(bytes, "UTF-8");
+//                } catch (UnsupportedEncodingException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                }
+//                break;
+//            case "jpg":
+//                this.binaryContent = bytes;
+//                break;
+//            case "jpeg":
+//                this.binaryContent = bytes;
+//                break;
+//            case "gif":
+//                this.binaryContent = bytes;
+//                break;
+//            case "png":
+//                this.binaryContent = bytes;
+//                break;
+//            default:
+//                break;
+//            }
+//        }
+//
+//    }
 
     /**
      * Method override toString() method to construct response message.
@@ -173,12 +169,12 @@ public class HttpResponser {
         if (bytes != null) {
             switch (format) {
             case Configurations.BINARY_FORMAT:
-                str = header + this.body + "\r\n" + binaryContent + "\r\n";
+                str = header + this.body + "\r\n";
                 // Create new file if request is about getting binary file
                 ImageWriter.writeImage(filename, bytes);
                 break;
             case Configurations.TXT_FORMAT:
-                str = header + this.body + "\r\n" + txtContent + "\r\n";
+                str = header + this.body + "\r\n";
                 break;
             default:
                 System.out.println("Unknown type");
