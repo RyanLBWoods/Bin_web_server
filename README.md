@@ -1,7 +1,7 @@
 # Web_server
 Simple java web server that can response to some HTTP/1.1 request
 # Usage
-java WebServerMain <document_root> <port>
+java WebServerMain <document_root> \<port\>
 # Attempted extension
 Reurning of binary images (GIF, JPEG and PNG)   
 Multithreading   
