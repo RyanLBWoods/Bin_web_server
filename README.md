@@ -12,7 +12,7 @@ The request images file byte stream will be given to client and client will crea
 file in current directory using the same name simulating the download process.   
 To test this, start the server first ,open any browser and type in "localhost:12345/\<filename\>"
 # Multithreading
-In the WebServerMain class, the is a for loop beneath a comment box, uncomment it and comment the socket accept code above 
+In the WebServerMain class, the is a for loop above a comment box, uncomment it and comment the socket accept code below 
 to turn the program to support multithreading.
 # Logging file
 The program invokes a file writing method to log message into a file as it runs. The log file will be created in src directory.
