@@ -68,6 +68,7 @@ public class ResponseHandler {
             default:
                 response = protocol + " " + Configurations.CODE_NOT_IMPLEMENTED;
                 out.println(response);
+                LoggingFile.witeLog(" " + Configurations.CODE_NOT_IMPLEMENTED);
                 // Print response in terminal
                 System.out.println(response);
                 break;

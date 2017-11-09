@@ -44,7 +44,7 @@ public class Configurations {
     /**
      * Response code of not implemented request type.
      */
-    public static final String CODE_NOT_IMPLEMENTED = "501 Not Implemented";
+    public static final String CODE_NOT_IMPLEMENTED = "501 Not Implemented\r\n";
     /**
      * Limit number of number of client.
      */

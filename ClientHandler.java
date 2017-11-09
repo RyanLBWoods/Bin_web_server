@@ -67,6 +67,7 @@ public class ClientHandler extends Thread {
      *             Throw exception when client is broken
      */
     public void requestHanlder() throws Exception {
+        int i = 0;
         while (true) {
             try {
                 // PrintWriter out = new PrintWriter(os, true);
@@ -74,13 +75,22 @@ public class ClientHandler extends Thread {
                 String line = "";
                 // Get request
                 line = br.readLine();
+                if (!line.isEmpty() && i == 0) {
+                    recv = recv + line;
+                    // Use an integer to identify request
+                    // aim to get rid of irrelevant request content
+                    if(i == 0){
+                        LoggingFile.witeLog(line);
+                        i++;
+                    }
+                }
                 if (line == null || line.equals("null")) {
                     throw new Exception("... client has closed the connection ... ");
                 }
-                while (!line.isEmpty()) {
-                    recv = recv + line;
-                    line = br.readLine();
-                }
+//                while (!line.isEmpty()) {
+//                    recv = recv + line;
+//                    line = br.readLine();
+//                }
                 // Construct request
                 String[] requests = recv.split(" ");
                 // Get response message

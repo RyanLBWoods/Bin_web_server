@@ -80,9 +80,6 @@ public class SingleRequestHandler {
         String fname = f.getName();
         String ftype = fname.substring(fname.lastIndexOf(".") + 1);
         long flength = f.length();
-        // response = ResponseHandler.responseHandler(f, flag, ftype, flength,
-        // request);
         ResponseHandler.responseHandler(f, flag, ftype, flength, request, protocol, out);
-        // responseHandler(f, flag, ftype, flength, request);
     }
 }
