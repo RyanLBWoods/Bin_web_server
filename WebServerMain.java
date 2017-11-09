@@ -34,6 +34,7 @@ public class WebServerMain {
             ServerSocket ss = new ServerSocket(port);
             for (int i = 0; i < Configurations.CLIENT_LIMIT; i++) {
                 Socket socket = ss.accept();
+                // Write request time to log file
                 Date requestTime = new Date();
                 SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 String time = format.format(requestTime) + " ";
@@ -42,8 +43,7 @@ public class WebServerMain {
                 ch.start();
             }
             /////////////////////////////////////////////////////////////////////////////////////////////
-            // Comment the loop above and uncomment code below to make program
-            // support only one client //
+            // Comment the loop above and uncomment code below to make program support only one client //
             /////////////////////////////////////////////////////////////////////////////////////////////
 //            Socket socket = ss.accept();
 //            Date requestTime = new Date();

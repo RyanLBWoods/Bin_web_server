@@ -31,7 +31,6 @@ public class SingleRequestHandler {
      */
     public static void requestHandler(String path, Socket socket) {
         try {
-            // PrintWriter out = new PrintWriter(os, true);
             ins = socket.getInputStream();
             os = socket.getOutputStream();
             br = new BufferedReader(new InputStreamReader(ins));
@@ -41,6 +40,7 @@ public class SingleRequestHandler {
             // Get request
             line = br.readLine();
             if (!line.isEmpty()) {
+                // Write request to log file
                 LoggingFile.witeLog(line);
                 recv = recv + line;
             }

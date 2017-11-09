@@ -66,6 +66,7 @@ public class ResponseHandler {
                 System.out.println(response);
                 break;
             default:
+                // Unsupported request type
                 response = protocol + " " + Configurations.CODE_NOT_IMPLEMENTED;
                 out.println(response);
                 LoggingFile.witeLog(" " + Configurations.CODE_NOT_IMPLEMENTED);

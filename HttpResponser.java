@@ -104,8 +104,10 @@ public class HttpResponser {
     /**
      * Method override toString() method to construct response message.
      * 
-     * <protocol><responseCode><cr><lf> <metaData><contentType><contentLength>
-     * each tailing with<cr><lf>) <cr><lf>(Importent!) <content>
+     * <protocol><responseCode><cr><lf>
+     * <metaData><contentType><contentLength>(each tailing with<cr><lf>)
+     * <cr><lf>(Importent!)
+     * <content>
      * 
      * @param bytes
      *            File content indicated in bytes
@@ -137,6 +139,7 @@ public class HttpResponser {
         } else {
             str = header + this.body + "\r\n";
         }
+        // Write response status to log file
         LoggingFile.witeLog(" " + this.status);
         return str;
     }

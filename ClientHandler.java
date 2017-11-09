@@ -79,7 +79,8 @@ public class ClientHandler extends Thread {
                     recv = recv + line;
                     // Use an integer to identify request
                     // aim to get rid of irrelevant request content
-                    if(i == 0){
+                    if (i == 0) {
+                        // Writer request to log file
                         LoggingFile.witeLog(line);
                         i++;
                     }
@@ -87,10 +88,10 @@ public class ClientHandler extends Thread {
                 if (line == null || line.equals("null")) {
                     throw new Exception("... client has closed the connection ... ");
                 }
-//                while (!line.isEmpty()) {
-//                    recv = recv + line;
-//                    line = br.readLine();
-//                }
+                // while (!line.isEmpty()) {
+                // recv = recv + line;
+                // line = br.readLine();
+                // }
                 // Construct request
                 String[] requests = recv.split(" ");
                 // Get response message
