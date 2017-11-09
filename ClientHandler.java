@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.PrintStream;
 import java.net.Socket;
 
 /**
@@ -21,7 +21,7 @@ public class ClientHandler extends Thread {
     private InputStream is;
     private OutputStream os;
     private BufferedReader br;
-    private PrintWriter out;
+    private PrintStream out;
 
     /**
      * Constructor for client handler.
@@ -38,7 +38,7 @@ public class ClientHandler extends Thread {
             is = socket.getInputStream();
             os = socket.getOutputStream();
             br = new BufferedReader(new InputStreamReader(is));
-            out = new PrintWriter(os, true);
+            out = new PrintStream(os, true);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -45,13 +45,15 @@ public class WebServerMain {
             /////////////////////////////////////////////////////////////////////////////////////////////
             // Uncomment the loop above and comment code below to make program support multiple client //
             /////////////////////////////////////////////////////////////////////////////////////////////
-            Socket socket = ss.accept();
-            Date requestTime = new Date();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            String time = format.format(requestTime) + " ";
-            LoggingFile.witeLog(time);
-            SingleRequestHandler.requestHandler(path, socket);
-            socket.close();
+            while (true) {
+                Socket socket = ss.accept();
+                Date requestTime = new Date();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                String time = format.format(requestTime) + " ";
+                LoggingFile.witeLog(time);
+                SingleRequestHandler.requestHandler(path, socket);
+            }
+            // socket.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

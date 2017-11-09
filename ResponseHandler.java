@@ -1,7 +1,7 @@
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.PrintWriter;
+import java.io.PrintStream;
 
 /**
  * Class to handle the response.
@@ -29,7 +29,7 @@ public class ResponseHandler {
      *            PrintWriter
      */
     public static void responseHandler(File f, int flag, String ftype, long flength, String request, String protocol,
-            PrintWriter out) {
+            PrintStream out) {
         String response = "";
         // Check if file exist and response
         if (!f.exists()) {
@@ -49,8 +49,10 @@ public class ResponseHandler {
                     fis.read(bytes);
                     HttpResponser getResp = new HttpResponser(flag, protocol, ftype, flength);
                     response = getResp.toString(bytes, f.getName());
-                    out.println(response);
-                    out.print(new String(bytes, "UTF-8"));
+//                    out.println(response);
+//                    out.print(new String(bytes, "UTF-8"));
+                    out.write(response.getBytes());
+                    out.write(bytes);
                     // Print response in terminal
                     System.out.println(response);
                     fis.close();

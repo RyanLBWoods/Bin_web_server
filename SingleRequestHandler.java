@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.PrintStream;
 import java.net.Socket;
 
 /**
@@ -19,7 +19,7 @@ public class SingleRequestHandler {
     private static InputStream ins;
     private static OutputStream os;
     private static BufferedReader br;
-    private static PrintWriter out;
+    private static PrintStream out;
 
     /**
      * Method to handle the request.
@@ -34,7 +34,7 @@ public class SingleRequestHandler {
             ins = socket.getInputStream();
             os = socket.getOutputStream();
             br = new BufferedReader(new InputStreamReader(ins));
-            out = new PrintWriter(os, true);
+            out = new PrintStream(os, true);
             String recv = "";
             String line = "";
             // Get request
