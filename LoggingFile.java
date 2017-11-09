@@ -18,7 +18,7 @@ public class LoggingFile {
 
     /**
      * Constructor.
-     * @param content
+     * @param content Logging file content including header and request file content
      */
     public LoggingFile(String content) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
