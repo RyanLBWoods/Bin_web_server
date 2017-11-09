@@ -187,7 +187,8 @@ public class HttpResponser {
         } else {
             str = header + this.body + "\r\n";
         }
-
+        LoggingFile lf = new LoggingFile(str);
+        lf.createFile();
         return str;
     }
 }

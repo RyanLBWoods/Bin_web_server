@@ -30,7 +30,7 @@ public class WebServerMain {
         try {
             // Support multiple concurrent client connection request
             ServerSocket ss = new ServerSocket(port);
-            while (true) {
+            for (int i = 0; i < Configurations.CLIENT_LIMIT; i++) {
                 Socket socket = ss.accept();
                 ClientHandler ch = new ClientHandler(path, socket);
                 ch.start();

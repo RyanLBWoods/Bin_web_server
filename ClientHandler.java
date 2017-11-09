@@ -46,6 +46,7 @@ public class ClientHandler extends Thread {
     /**
      * Run method invoked when Thread's start method is invoked.
      */
+    @Override
     public void run() {
         System.out.println("new ConnctionHandler thread started .... ");
         try {
@@ -82,7 +83,7 @@ public class ClientHandler extends Thread {
                 String[] requests = recv.split(" ");
                 // Get response message
                 String resp = getResponse(path, requests);
-//                System.out.println(resp);
+                System.out.println(resp);
                 out.println(resp);
                 out.flush();
                 out.close();

@@ -45,4 +45,8 @@ public class Configurations {
      * Response code of not implemented request type.
      */
     public static final String CODE_NOT_IMPLEMENTED = "HTTP/1.1 501 Not Implemented";
+    /**
+     * Limit number of number of client.
+     */
+    public static final int CLIENT_LIMIT = 10;
 }
