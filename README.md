@@ -1,4 +1,4 @@
-# Web_server
+# Web Server
 Simple java web server that can response to some HTTP/1.1 request
 # Usage
 java WebServerMain <document_root> \<port\>
