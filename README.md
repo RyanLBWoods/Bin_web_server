@@ -5,7 +5,7 @@ java WebServerMain <document_root> \<port\>
 # Attempted extension
 Reurning of binary images (GIF, JPEG and PNG)   
 Multithreading   
-Logging   
+Logging   
 Additional method
 # Returning binary images
 The program is able to return binary file as file reading method implemented is reading file through byte. 
