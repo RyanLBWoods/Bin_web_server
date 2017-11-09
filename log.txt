@@ -141,3 +141,18 @@ GET /tp_it.jpg HTTP/1.1GET /beer.jpg HTTP/1.1 200 OK
 2017/11/09 18:45:01 HEAD /noFileWithThisName.html HTTP/1.1 404 Not Found
 2017/11/09 18:45:04 HEAD /index.html HTTP/1.1 200 OK
 2017/11/09 18:45:06 SLURP /index.html HTTP/1.1 501 Not Implemented
+2017/11/09 20:53:51 GET /index.html HTTP/1.1 200 OK
+2017/11/09 20:53:54 GET /index.html HTTP/1.1 200 OK
+2017/11/09 20:53:56 GET /index.html HTTP/1.1 200 OK
+2017/11/09 20:53:58 GET /noFileWithThisName.html HTTP/1.1 404 Not Found
+2017/11/09 20:54:01 GET /index.html HTTP/1.1 200 OK
+2017/11/09 20:54:03 GET /page3.html HTTP/1.1 200 OK
+2017/11/09 20:54:05 GET /another/page3.html HTTP/1.1 200 OK
+2017/11/09 20:54:08 HEAD /index.html HTTP/1.1 200 OK
+2017/11/09 20:54:10 HEAD /index.html HTTP/1.1 200 OK
+2017/11/09 20:54:12 HEAD /index.html HTTP/1.1 200 OK
+2017/11/09 20:54:15 HEAD /noFileWithThisName.html HTTP/1.1 404 Not Found
+2017/11/09 20:54:17 HEAD /index.html HTTP/1.1 200 OK
+2017/11/09 20:54:19 SLURP /index.html HTTP/1.1 501 Not Implemented
+2017/11/09 20:54:39 DELETE /index.html HTTP/1.1 200 OK
+2017/11/09 20:54:59 DELETE /index.html HTTP/1.1 404 Not Found

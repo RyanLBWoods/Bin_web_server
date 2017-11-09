@@ -67,6 +67,11 @@ public class ResponseHandler {
                 // Print response in terminal
                 System.out.println(response);
                 break;
+            case "DELETE":
+                HttpResponser deleteResp = new HttpResponser(flag, protocol, ftype, flength);
+                response = deleteResp.toString(null, f.getName());
+                f.delete();
+                break;
             default:
                 // Unsupported request type
                 response = protocol + " " + Configurations.CODE_NOT_IMPLEMENTED;
