@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -22,7 +21,7 @@ public class ClientHandler extends Thread {
     private InputStream is;
     private OutputStream os;
     private BufferedReader br;
-    private PrintWriter out;/* = new PrintWriter(os, true);*/
+    private PrintWriter out;
 
     /**
      * Constructor for client handler.
@@ -70,7 +69,7 @@ public class ClientHandler extends Thread {
     public void requestHanlder() throws Exception {
         while (true) {
             try {
-//                PrintWriter out = new PrintWriter(os, true);
+                // PrintWriter out = new PrintWriter(os, true);
                 String recv = "";
                 String line = "";
                 // Get request
@@ -102,19 +101,17 @@ public class ClientHandler extends Thread {
      *            File path
      * @param requests
      *            An array of string that contains the constructed request
-     * @return Return the response message
      */
     public void getResponse(String path, String[] requests) {
-//        String response = "";
         int flag = 0; // flag to identify existence of file
         String request = requests[0];
+        String protocol = requests[2];
         // Get request file
         File f = new File(path + requests[1]);
         String fname = f.getName();
         String ftype = fname.substring(fname.lastIndexOf(".") + 1);
         long flength = f.length();
-//        response = ResponseHandler.responseHandler(f, flag, ftype, flength, request);
-        responseHandler(f, flag, ftype, flength, request);
+        ResponseHandler.responseHandler(f, flag, ftype, flength, request, protocol, out);
     }
 
     /**
@@ -128,67 +125,6 @@ public class ClientHandler extends Thread {
             socket.close();
         } catch (IOException ioe) {
             System.out.println("ClientHandler: cleanup " + ioe.getMessage());
-        }
-    }
-    
-    /**
-     * Method to handle the request and give response.
-     * 
-     * @param f
-     *            File to handle
-     * @param flag
-     *            Flag to identify existence of file
-     * @param ftype
-     *            Type of file
-     * @param flength
-     *            Length of file
-     * @param request
-     *            Type of request
-     * @return Return the constructed response
-     */
-    public void responseHandler(File f, int flag, String ftype, long flength, String request) {
-        String response = "";
-        // Check if file exist and response
-        if (!f.exists()) {
-            flag = Configurations.NOT_EXIST; // File not exist
-            HttpResponser httpresp = new HttpResponser(flag, ftype, flength);
-            response = httpresp.toString(null, f.getName());
-            out.println(response);
-        } else {
-            flag = Configurations.EXIST; // File exist
-            // Switch method to make response accordingly
-            switch (request) {
-            case "GET":
-                try {
-                    // Read file stream by bytes
-                    FileInputStream fis = new FileInputStream(f);
-                    byte[] bytes = new byte[fis.available()];
-                    fis.read(bytes);
-                    HttpResponser getResp = new HttpResponser(flag, ftype, flength);
-                    response = getResp.toString(bytes, f.getName());
-                    out.println(response);
-                    out.print(new String(bytes, "UTF-8"));
-                    // Print response in terminal
-                    System.out.println(response);
-                    fis.close();
-                } catch (Exception e) {
-                    e.getMessage();
-                }
-                break;
-            case "HEAD":
-                HttpResponser headResp = new HttpResponser(flag, ftype, flength);
-                response = headResp.toString(null, f.getName());
-                out.println(response);
-                // Print response in terminal
-                System.out.println(response);
-                break;
-            default:
-                response = Configurations.CODE_NOT_IMPLEMENTED;
-                // Print response in terminal
-                System.out.print(response);
-                out.println(response);
-                break;
-            }
         }
     }
 }

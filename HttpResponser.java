@@ -7,6 +7,7 @@
 public class HttpResponser {
 
     private String status;
+    private String protocol;
     private String metadata;
     private String body;
     private String type;
@@ -18,20 +19,20 @@ public class HttpResponser {
      * 
      * @param flag
      *            Integer that identify existence of file
-     * @param bytes
-     *            File content indicated in bytes
+     * @param protocol
+     *            Protocol code get from request
      * @param type
      *            Type of file
      * @param length
      *            Content length in bytes
      */
-    public HttpResponser(int flag, String type, long length) {
+    public HttpResponser(int flag, String protocol, String type, long length) {
         // Construct responser
+        this.protocol = protocol;
         this.metadata = "My Java Web Server\r\n";
         setType(type);
         this.length = String.valueOf(length);
         setHeader(flag, type, length);
-//        setContent(type, bytes);
     }
 
     /**
@@ -101,58 +102,10 @@ public class HttpResponser {
     }
 
     /**
-     * Method to set type context.
-     * 
-     * @param type
-     *            Type of file
-     * @param bytes
-     *            File content indicated in bytes
-     */
-//    public void setContent(String type, byte[] bytes) {
-//        if (bytes != null) {
-//            switch (type) {
-//            case "txt":
-//                try {
-//                    this.txtContent = new String(bytes, "UTF-8");
-//                } catch (UnsupportedEncodingException e) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace();
-//                }
-//                break;
-//            case "html":
-//                try {
-//                    this.txtContent = new String(bytes, "UTF-8");
-//                } catch (UnsupportedEncodingException e) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace();
-//                }
-//                break;
-//            case "jpg":
-//                this.binaryContent = bytes;
-//                break;
-//            case "jpeg":
-//                this.binaryContent = bytes;
-//                break;
-//            case "gif":
-//                this.binaryContent = bytes;
-//                break;
-//            case "png":
-//                this.binaryContent = bytes;
-//                break;
-//            default:
-//                break;
-//            }
-//        }
-//
-//    }
-
-    /**
      * Method override toString() method to construct response message.
      * 
-     * <protocol><responseCode><cr><lf>
-     * <metaData><contentType><contentLength> each tailing with<cr><lf>)
-     * <cr><lf>(Importent!)
-     * <content>
+     * <protocol><responseCode><cr><lf> <metaData><contentType><contentLength>
+     * each tailing with<cr><lf>) <cr><lf>(Importent!) <content>
      * 
      * @param bytes
      *            File content indicated in bytes
@@ -164,7 +117,8 @@ public class HttpResponser {
         String str = "";
         String header;
         // Set header message
-        header = status + metadata + "Content-Type: " + this.type + "Content-Length: " + this.length + "\r\n";
+        header = protocol + " " + status + metadata + "Content-Type: " + this.type + "Content-Length: " + this.length
+                + "\r\n";
         // If content is not null
         if (bytes != null) {
             switch (format) {
@@ -183,8 +137,7 @@ public class HttpResponser {
         } else {
             str = header + this.body + "\r\n";
         }
-        LoggingFile lf = new LoggingFile(str);
-        lf.createFile();
+        LoggingFile.witeLog(" " + this.status);
         return str;
     }
 }

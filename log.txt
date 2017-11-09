@@ -1,7 +1,25 @@
-2017/11/09 00:51:42
-HTTP/1.1 200 OK
-My Java Web Server
-Content-Type: text/html
-Content-Length: 1279
-The html page from the file in this case containing 1279 bytes
-
+2017/11/09 15:07:22 GET /index.html HTTP/1.1 200 OK
+2017/11/09 15:07:23 GET /index.html HTTP/1.1 200 OK
+2017/11/09 15:07:24 GET /index.html HTTP/1.1 200 OK
+2017/11/09 15:07:25 GET /noFileWithThisName.html HTTP/1.1 404 Not Found
+2017/11/09 15:07:26 GET /index.html HTTP/1.1 200 OK
+2017/11/09 15:07:27 GET /page3.html HTTP/1.1 200 OK
+2017/11/09 15:07:28 GET /another/page3.html HTTP/1.1 200 OK
+2017/11/09 15:07:29 HEAD /index.html HTTP/1.1 200 OK
+2017/11/09 15:07:30 HEAD /index.html HTTP/1.1 200 OK
+2017/11/09 15:07:31 HEAD /index.html HTTP/1.1 200 OK
+2017/11/09 15:07:32 HEAD /noFileWithThisName.html HTTP/1.1 404 Not Found
+2017/11/09 15:07:33 HEAD /index.html HTTP/1.1 200 OK
+2017/11/09 15:07:34 SLURP /index.html HTTP/1.12017/11/09 15:21:25 GET /index.html HTTP/1.1 200 OK
+2017/11/09 15:21:27 GET /index.html HTTP/1.1 200 OK
+2017/11/09 15:21:28 GET /index.html HTTP/1.1 200 OK
+2017/11/09 15:21:29 GET /noFileWithThisName.html HTTP/1.1 404 Not Found
+2017/11/09 15:21:30 GET /index.html HTTP/1.1 200 OK
+2017/11/09 15:21:31 GET /page3.html HTTP/1.1 200 OK
+2017/11/09 15:21:32 GET /another/page3.html HTTP/1.1 200 OK
+2017/11/09 15:21:33 HEAD /index.html HTTP/1.1 200 OK
+2017/11/09 15:21:34 HEAD /index.html HTTP/1.1 200 OK
+2017/11/09 15:21:35 HEAD /index.html HTTP/1.1 200 OK
+2017/11/09 15:21:36 HEAD /noFileWithThisName.html HTTP/1.1 404 Not Found
+2017/11/09 15:21:37 HEAD /index.html HTTP/1.1 200 OK
+2017/11/09 15:21:38 SLURP /index.html HTTP/1.1

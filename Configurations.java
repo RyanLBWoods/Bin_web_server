@@ -36,15 +36,15 @@ public class Configurations {
     /**
      * Response code of everything work.
      */
-    public static final String CODE_OK = "HTTP/1.1 200 OK\r\n";
+    public static final String CODE_OK = "200 OK\r\n";
     /**
      * Response code of resource not found.
      */
-    public static final String CODE_NOT_FOUND = "HTTP/1.1 404 Not Found\r\n";
+    public static final String CODE_NOT_FOUND = "404 Not Found\r\n";
     /**
      * Response code of not implemented request type.
      */
-    public static final String CODE_NOT_IMPLEMENTED = "HTTP/1.1 501 Not Implemented";
+    public static final String CODE_NOT_IMPLEMENTED = "501 Not Implemented";
     /**
      * Limit number of number of client.
      */

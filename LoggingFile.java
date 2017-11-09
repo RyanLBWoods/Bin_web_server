@@ -2,8 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Class to create logging file.
@@ -12,33 +10,20 @@ import java.util.Date;
  *
  */
 public class LoggingFile {
-
-    private String date;
-    private String content;
-
     /**
-     * Constructor.
-     * @param content Logging file content including header and request file content
+     * Method to write content into logging file.
+     * 
+     * @param content
+     *            The content to write
      */
-    public LoggingFile(String content) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date now = new Date();
-        this.date = format.format(now);
-        this.content = content;
-    }
-
-    /**
-     * Method to create a log file.
-     */
-    public void createFile() {
-        String log = this.date + "\r\n" + this.content;
+    public static void witeLog(String content) {
         File file = new File("log.txt");
         try {
             if (!file.exists()) {
                 file.createNewFile(); // Create file if it does not exist
             }
             FileOutputStream fos = new FileOutputStream(file, true);
-            fos.write(log.getBytes());
+            fos.write(content.getBytes());
             fos.flush();
             fos.close();
         } catch (FileNotFoundException e) {

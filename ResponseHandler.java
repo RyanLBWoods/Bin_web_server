@@ -1,5 +1,7 @@
+
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.PrintWriter;
 
 /**
  * Class to handle the response.
@@ -21,15 +23,20 @@ public class ResponseHandler {
      *            Length of file
      * @param request
      *            Type of request
-     * @return Return the constructed response
+     * @param protocol
+     *            Protocol code get from request
+     * @param out
+     *            PrintWriter
      */
-    public static String responseHandler(File f, int flag, String ftype, long flength, String request) {
+    public static void responseHandler(File f, int flag, String ftype, long flength, String request, String protocol,
+            PrintWriter out) {
         String response = "";
         // Check if file exist and response
         if (!f.exists()) {
             flag = Configurations.NOT_EXIST; // File not exist
-            HttpResponser httpresp = new HttpResponser(flag, null, ftype, flength);
+            HttpResponser httpresp = new HttpResponser(flag, protocol, ftype, flength);
             response = httpresp.toString(null, f.getName());
+            out.println(response);
         } else {
             flag = Configurations.EXIST; // File exist
             // Switch method to make response accordingly
@@ -40,8 +47,10 @@ public class ResponseHandler {
                     FileInputStream fis = new FileInputStream(f);
                     byte[] bytes = new byte[fis.available()];
                     fis.read(bytes);
-                    HttpResponser getResp = new HttpResponser(flag, bytes, ftype, flength);
+                    HttpResponser getResp = new HttpResponser(flag, protocol, ftype, flength);
                     response = getResp.toString(bytes, f.getName());
+                    out.println(response);
+                    out.print(new String(bytes, "UTF-8"));
                     // Print response in terminal
                     System.out.println(response);
                     fis.close();
@@ -50,19 +59,20 @@ public class ResponseHandler {
                 }
                 break;
             case "HEAD":
-                HttpResponser headResp = new HttpResponser(flag, null, ftype, flength);
+                HttpResponser headResp = new HttpResponser(flag, protocol, ftype, flength);
                 response = headResp.toString(null, f.getName());
+                out.println(response);
                 // Print response in terminal
                 System.out.println(response);
                 break;
             default:
-                response = Configurations.CODE_NOT_IMPLEMENTED;
+                response = protocol + " " + Configurations.CODE_NOT_IMPLEMENTED;
+                out.println(response);
                 // Print response in terminal
                 System.out.println(response);
                 break;
             }
         }
-        return response;
     }
 
 }
