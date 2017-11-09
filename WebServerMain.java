@@ -32,26 +32,26 @@ public class WebServerMain {
         try {
             // Support multiple concurrent client connection request
             ServerSocket ss = new ServerSocket(port);
-            for (int i = 0; i < Configurations.CLIENT_LIMIT; i++) {
-                Socket socket = ss.accept();
-                // Write request time to log file
-                Date requestTime = new Date();
-                SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                String time = format.format(requestTime) + " ";
-                LoggingFile.witeLog(time);
-                ClientHandler ch = new ClientHandler(path, socket);
-                ch.start();
-            }
+//            for (int i = 0; i < Configurations.CLIENT_LIMIT; i++) {
+//                Socket socket = ss.accept();
+//                // Write request time to log file
+//                Date requestTime = new Date();
+//                SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//                String time = format.format(requestTime) + " ";
+//                LoggingFile.witeLog(time);
+//                ClientHandler ch = new ClientHandler(path, socket);
+//                ch.start();
+//            }
             /////////////////////////////////////////////////////////////////////////////////////////////
-            // Comment the loop above and uncomment code below to make program support only one client //
+            // Uncomment the loop above and comment code below to make program support multiple client //
             /////////////////////////////////////////////////////////////////////////////////////////////
-//            Socket socket = ss.accept();
-//            Date requestTime = new Date();
-//            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//            String time = format.format(requestTime) + " ";
-//            LoggingFile.witeLog(time);
-//            SingleRequestHandler.requestHandler(path, socket);
-//            socket.close();
+            Socket socket = ss.accept();
+            Date requestTime = new Date();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            String time = format.format(requestTime) + " ";
+            LoggingFile.witeLog(time);
+            SingleRequestHandler.requestHandler(path, socket);
+            socket.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
