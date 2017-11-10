@@ -2,6 +2,8 @@
 Simple java web server that can response to some HTTP/1.1 request
 # Usage
 java WebServerMain <document_root> \<port\>
+# Basic
+All basic function are implemented. Program is able to get and response to GET and HEAD request. When test the server with browsers, it will response an OK message and browser will open the request file if exists. If the request is invailid (inexistent file or unsupported request type), it will response an error message and browser will show an html page telling the error.
 # Attempted extension
 Reurning of binary images (GIF, JPEG and PNG)   
 Multithreading   
