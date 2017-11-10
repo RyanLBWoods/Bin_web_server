@@ -16,7 +16,7 @@ To test this, start the server first ,open any browser and type in "localhost:12
 # Multithreading
 Program used newFixedThreadPool() to support multiple concurrent client with a specified limit. The limit was set to be 10. In the WebServerMain class, there is a while loop above a comment box, uncomment it and comment the while loop below to turn the program to support multiple concurrent client.
 # Logging file
-The program invokes a file writing method to log message into a file as it runs. The log file will be created in src directory. Everytime server handle a request, the log file will have a new line of message.   
+The program invokes a file writing method to log message into a file as it runs. Everytime server handle a request, the log file will have a new line of message.   
 The message in log file is under format of "\<request_time\> \<request_type\> \<request_file\> \<protocol\> \<response_code\> \<response_time\>"
 # Additional method
 Support DELETE method.   
