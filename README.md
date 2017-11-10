@@ -12,7 +12,7 @@ The program is able to return binary file as file reading method implemented is 
 The request images file byte stream will be given to client and client will create a new file in current directory using the same name simulating the download process.   
 To test this, start the server first ,open any browser and type in "localhost:12345/\<filename\>". It should be able to show the image on the browser and download it to src directory as well.
 # Multithreading
-In the WebServerMain class, there is a for loop above a comment box, uncomment it and comment the while loop below to turn the program to support multithreading.
+Program used newFixedThreadPool to support multiple concurrent client with a specified limit. the limit was set to be 10. In the WebServerMain class, there is a while loop above a comment box, uncomment it and comment the while loop below to turn the program to support multithreading.
 # Logging file
 The program invokes a file writing method to log message into a file as it runs. The log file will be created in src directory. Everytime server handle a request, the log file will have a new line of message.   
 The message in log file is under format of "\<request_time\> \<request_type\> \<request_file\> \<protocol\> \<response_code\> \<response_time\>"
