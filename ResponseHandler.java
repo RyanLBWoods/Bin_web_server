@@ -1,6 +1,8 @@
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintStream;
 
 /**
@@ -34,10 +36,37 @@ public class ResponseHandler {
         // Check if file exist and response
         if (!f.exists()) {
             flag = Configurations.NOT_EXIST; // File not exist
-            HttpResponser httpresp = new HttpResponser(flag, protocol, ftype, flength);
-            response = httpresp.toString(null, f.getName());
-            System.out.println(response);
-            out.println(response);
+            ErrorResponser er = new ErrorResponser(flag, f.getName(), protocol, ftype, flength, out);
+            try {
+                out.write(er.errorResponser());
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+//            HttpResponser httpresp = new HttpResponser(flag, protocol, ftype, errorFile.length());
+//            response = httpresp.toString(null, f.getName());
+//            out.write(er.errorResponser());
+//            File errorFile = new File("www/Errors/404.html");
+//            try {
+//                FileInputStream efis = new FileInputStream(errorFile);
+//                byte[] errorBytes = new byte[efis.available()];
+//                efis.read(errorBytes);
+//                
+//                HttpResponser httpresp = new HttpResponser(flag, protocol, ftype, errorFile.length());
+//                response = httpresp.toString(null, f.getName());
+//                System.out.println(response);
+////              out.println(response);
+//                out.write(response.getBytes());
+////                ErrorResponser er = new ErrorResponser(flag, out);
+////                er.errorResponser();
+//                out.write(errorBytes);
+////                out.write(ErrorResponser.errorResponser(flag));
+//                efis.close();
+//            } catch (Exception e) {
+//                // TODO Auto-generated catch block
+//                System.out.println(e.getMessage());
+//            }
+
         } else {
             flag = Configurations.EXIST; // File exist
             // Switch method to make response accordingly
@@ -83,8 +112,36 @@ public class ResponseHandler {
                 break;
             default:
                 // Unsupported request type
-                response = protocol + " " + Configurations.CODE_NOT_IMPLEMENTED;
-                out.println(response);
+//                response = protocol + " " + Configurations.CODE_NOT_IMPLEMENTED;
+//                out.println(response);
+                int not_imp = Configurations.NOT_IMPLEMENTED;
+                ErrorResponser er = new ErrorResponser(not_imp, f.getName(), protocol, ftype, flength, out);
+                try {
+                    out.write(er.errorResponser());
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+//                File NI_file = new File("www/Errors/501.html");
+//                try {
+//                    FileInputStream NI_fis = new FileInputStream(NI_file);
+//                    byte[] NI_bytes = new byte[NI_fis.available()];
+//                    NI_fis.read(NI_bytes);
+//                    HttpResponser notImplement = new HttpResponser(not_imp, protocol, ftype, NI_file.length());
+//                    response = notImplement.toString(null, f.getName());
+//                    out.write(response.getBytes());
+//                    out.write(NI_bytes);
+//                    NI_fis.close();
+//                } catch (FileNotFoundException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                }
+                
+//                ErrorResponser er = new ErrorResponser(not_imp, out);
+//                er.errorResponser();
                 // Log into log file
                 LoggingFile.witeLog(" " + Configurations.CODE_NOT_IMPLEMENTED.substring(0, Configurations.CODE_NOT_IMPLEMENTED.lastIndexOf("\r")));
                 // Print response in terminal

@@ -18,6 +18,10 @@ public class Configurations {
      */
     public static final int NOT_EXIST = -1;
     /**
+     * Indicator for unsupported request type.
+     */
+    public static final int NOT_IMPLEMENTED = 0;
+    /**
      * ACK byte to client.
      */
     public static final byte ACK = 1;

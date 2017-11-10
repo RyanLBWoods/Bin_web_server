@@ -92,9 +92,13 @@ public class HttpResponser {
             break;
         case Configurations.NOT_EXIST:
             this.status = Configurations.CODE_NOT_FOUND;
-            this.body = "response message in this case containing " + length + " bytes of error message as an " + type
+            this.body = "response message in this case containing " + length + " bytes of error message as a " + type
                     + " page\r\n";
             break;
+        case Configurations.NOT_IMPLEMENTED:
+            this.status = Configurations.CODE_NOT_IMPLEMENTED;
+            this.body = "response message in this case containing " + length + "bytes of error message as a " + type
+                    + " page\r\n";
         default:
             System.out.println("Default output");
             break;
@@ -106,8 +110,7 @@ public class HttpResponser {
      * 
      * <protocol><responseCode><cr><lf>
      * <metaData><contentType><contentLength>(each tailing with<cr><lf>)
-     * <cr><lf>(Importent!)
-     * <content>
+     * <cr><lf>(Importent!) <content>
      * 
      * @param bytes
      *            File content indicated in bytes
