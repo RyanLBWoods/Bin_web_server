@@ -71,7 +71,6 @@ public class SingleRequestHandler {
      *            An array of string that contains the constructed request
      */
     public static void getResponse(String path, String[] requests) {
-        // String response = "";
         int flag = 0; // flag to identify existence of file
         String request = requests[0];
         String protocol = requests[2];

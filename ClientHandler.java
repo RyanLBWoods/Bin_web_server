@@ -22,6 +22,8 @@ public class ClientHandler extends Thread {
     private OutputStream os;
     private BufferedReader br;
     private PrintStream out;
+    private long acceptTime;
+    // private ExecutorService executor;
 
     /**
      * Constructor for client handler.
@@ -30,10 +32,14 @@ public class ClientHandler extends Thread {
      *            File path
      * @param socket
      *            Socket for client
+     * @param acceptTime
+     *            The time when the request was accepted
      */
-    public ClientHandler(String path, Socket socket) {
+    public ClientHandler(String path, Socket socket, long acceptTime) {
         this.socket = socket;
         this.path = path;
+        this.acceptTime = acceptTime;
+        // executor = Executors.newFixedThreadPool(Configurations.CLIENT_LIMIT);
         try {
             is = socket.getInputStream();
             os = socket.getOutputStream();
@@ -50,14 +56,19 @@ public class ClientHandler extends Thread {
      */
     @Override
     public void run() {
-        System.out.println("new ConnctionHandler thread started .... ");
-        try {
-            requestHanlder();
-            os.write(Configurations.ACK);
-        } catch (Exception e) { // Exit cleanly for any Exception
-            System.out.println("ConnectionHandler: run " + e.getMessage());
-            cleanup();
+        while (true) {
+            try {
+                // executor.execute(new ClientHandler(path, socket));
+                System.out.println("new ConnctionHandler thread started .... ");
+                requestHanlder();
+                os.write(Configurations.ACK);
+            } catch (Exception e) { // Exit cleanly for any Exception
+                System.out.println("ConnectionHandler: run " + e.getMessage());
+                // executor.shutdown();
+                cleanup();
+            }
         }
+
     }
 
     /**
@@ -96,6 +107,9 @@ public class ClientHandler extends Thread {
                 String[] requests = recv.split(" ");
                 // Get response message
                 getResponse(path, requests);
+                // Log request response time into log file
+                long handleTime = System.currentTimeMillis() - acceptTime;
+                LoggingFile.witeLog(" " + String.valueOf(handleTime) + "ms\r\n");
                 out.flush();
                 out.close();
             } catch (IOException e) {
