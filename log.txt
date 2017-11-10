@@ -39,3 +39,29 @@
 2017/11/10 19:12:59 HEAD /index.html HTTP/1.1 200 OK 36ms
 2017/11/10 19:13:02 SLURP /index.html HTTP/1.1 501 Not Implemented 33ms
 2017/11/10 19:13:27 DELETE /delete_test.txt HTTP/1.1 200 OK 39ms
+2017/11/10 19:37:01 GET /index.html HTTP/1.1 200 OK 35ms
+2017/11/10 19:37:03 GET /index.html HTTP/1.1 200 OK 33ms
+2017/11/10 19:37:05 GET /index.html HTTP/1.1 200 OK 31ms
+2017/11/10 19:37:08 GET /noFileWithThisName.html HTTP/1.1 404 Not Found 177ms
+2017/11/10 19:37:10 GET /index.html HTTP/1.1 200 OK 31ms
+2017/11/10 19:37:12 GET /page3.html HTTP/1.1 200 OK 33ms
+2017/11/10 19:37:15 GET /another/page3.html HTTP/1.1 200 OK 42ms
+2017/11/10 19:37:17 HEAD /index.html HTTP/1.1 200 OK 41ms
+2017/11/10 19:37:19 HEAD /index.html HTTP/1.1 200 OK 125ms
+2017/11/10 19:37:22 HEAD /index.html HTTP/1.1 200 OK 134ms
+2017/11/10 19:37:24 HEAD /noFileWithThisName.html HTTP/1.1 404 Not Found 113ms
+2017/11/10 19:37:26 HEAD /index.html HTTP/1.1 200 OK 31ms
+2017/11/10 19:37:29 SLURP /index.html HTTP/1.1 501 Not Implemented 146ms
+2017/11/10 19:38:09 GET /index.html HTTP/1.1 200 OK 195ms
+2017/11/10 19:38:12 GET /index.html HTTP/1.1 200 OK 36ms
+2017/11/10 19:38:14 GET /index.html HTTP/1.1 200 OK 338ms
+2017/11/10 19:38:16 GET /noFileWithThisName.html HTTP/1.1 404 Not Found 148ms
+2017/11/10 19:38:19 GET /index.html HTTP/1.1 200 OK 30ms
+2017/11/10 19:38:21 GET /page3.html HTTP/1.1 200 OK 79ms
+2017/11/10 19:38:23 GET /another/page3.html HTTP/1.1 200 OK 129ms
+2017/11/10 19:38:26 HEAD /index.html HTTP/1.1 200 OK 31ms
+2017/11/10 19:38:28 HEAD /index.html HTTP/1.1 200 OK 35ms
+2017/11/10 19:38:30 HEAD /index.html HTTP/1.1 200 OK 142ms
+2017/11/10 19:38:33 HEAD /noFileWithThisName.html HTTP/1.1 404 Not Found 33ms
+2017/11/10 19:38:35 HEAD /index.html HTTP/1.1 200 OK 81ms
+2017/11/10 19:38:37 SLURP /index.html HTTP/1.1 501 Not Implemented 31ms
